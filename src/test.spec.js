@@ -35,3 +35,10 @@ test('It rotates left', ()=>{
 
     expect(position).toStrictEqual([0,0,'W'])
 })
+
+test('It takes mutliple commands', ()=>{
+    const position = rover([0,0,'N'], ['F','F','F']);
+
+    expect(position).toStrictEqual([0,3,'N'])
+
+})
