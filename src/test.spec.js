@@ -29,3 +29,9 @@ test('It rotates right', ()=>{
 
     expect(position).toStrictEqual([0,0,'E'])
 })
+
+test('It rotates left', ()=>{
+    const position = rover([0,0,'N'], ['L']);
+
+    expect(position).toStrictEqual([0,0,'W'])
+})

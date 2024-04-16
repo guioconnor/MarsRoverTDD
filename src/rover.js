@@ -10,12 +10,14 @@ const direction = {
     B: -1,
 }
 
-const rotatation = ['N', 'E', 'S', 'W'];
+const rotation = ['N', 'E', 'S', 'W'];
 
 const rotate = (direction, position) => {
-    const currentIndex = rotatation.indexOf(position[2])
-    const newIndex = (currentIndex + 1) % rotatation.length;
-    return [position[0], position[1], rotatation[newIndex]];
+    const currentIndex = rotation.indexOf(position[2])
+    let newIndex = (currentIndex + direction) % rotation.length;
+    if(newIndex < 0) { newIndex = rotation.length -1 }
+
+    return [position[0], position[1], rotation[newIndex]];
 }
 
 const addVector = (position, movement) => {
@@ -41,7 +43,9 @@ const rover = (initialPosition, commands = []) => {
       position = addVector(position, multiplyVector(direction[move], moves[position[2]]))
     } else if(move === 'R') {
       position = rotate(1, position)
-    } 
+    } else if(move === 'L') {
+        position = rotate(-1, position)
+      } 
   })
 
   return position;
